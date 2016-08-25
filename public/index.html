@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>To-Do List</title>
+    <!-- Not present in the tutorial. Just for basic styling. -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://use.fontawesome.com/3f49784fca.js"></script>    <link rel="stylesheet" href="css/base.css" />
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <!--  <script type="text/babel" src="scripts/example.js"></script> -->
+    <script type="text/babel">
+      var TodoListApp = React.createClass({
+        getInitialState: function() {
+          return ({data: []});
+        },
+        loadItemsFromServer: function() {
+          $.ajax({
+            url: this.props.url,
+            type: 'GET',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+              this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }
+          });
+        },
+        componentDidMount: function() {
+          this.loadItemsFromServer();
+          setInterval(this.loadItemsFromServer, this.props.pollInterval)
+        },
+        handleItemSubmit: function(todoItem) {
+          var todoItems = this.state.data;
+          todoItem.id = Date.now();
+          var newItems = todoItems.concat([todoItem]);
+          this.setState({data: newItems});
+          $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            type: 'POST',
+            data: todoItem,
+            success: function(data) {
+              this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              this.setState({data: todoItems});
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+        },
+        
+        render: function() {
+          return(
+            <div className="container ">
+              <div id="todoList" className="center-block">
+                <h1 className="text-center heading">To-Do List</h1>
+                <TodoListItems data={this.state.data} />
+                <TodoListForm onItemSubmit={this.handleItemSubmit} />
+              </div>
+            </div>
+          );
+        }
+      });
+
+      var TodoListItems = React.createClass({
+        render: function() {
+          var todoNodes = this.props.data.map(function(todoItem) {
+            return(
+                <TodoItem key={todoItem.id}>
+                  {todoItem.text}
+                </TodoItem>
+            );
+          });
+          return(
+            <div className="todoList">
+              <ul className="text-center">
+                {todoNodes}
+              </ul>
+            </div>
+          );
+        }
+      });
+
+      var TodoItem = React.createClass({
+        rawMarkup: function() {
+          var md = new Remarkable();
+          var rawMarkup = md.render(this.props.children.toString());
+          return { __html: rawMarkup};
+        },
+
+        render: function() {
+          
+          return(
+            <li className="todoItem">
+              <span className="text-center" dangerouslySetInnerHTML={this.rawMarkup()}></span> 
+              <i className='fa fa-times pull-right remove-icon'></i>
+            </li>
+          );
+        }
+      });
+
+      var TodoListForm = React.createClass({
+        getInitialState: function() {
+          return {text: ''};
+        },
+        handleTextChange: function(e) {
+          this.setState({text: e.target.value});
+        },
+        handleSubmit: function(e) {
+          e.preventDefault();
+          var text = this.state.text.trim();
+          if(!text) {
+            return;
+          }
+          this.props.onItemSubmit({text: text});
+          this.setState({text: ''});
+        },
+        render: function() {
+          return (
+            <form className="todoForm" onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <div className="input-group">
+                  <input className="form-control" type="text" placeholder="Task" value={this.state.text} onChange={this.handleTextChange} />
+                  <span className="input-group-btn">
+                    <input className="btn btn-primary" type="submit" value="Add" />
+                  </span>
+                </div>
+              </div>
+            </form>
+          );
+        }
+      });
+      $("span").append('<i className="fa fa-times pull-right"></i>');
+
+      ReactDOM.render(
+        <TodoListApp url="/api/comments" pollInterval={2000} />,
+        document.getElementById('content')
+        );
+    </script>
+  </body>
+</html>

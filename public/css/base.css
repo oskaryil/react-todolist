@@ -1,0 +1,43 @@
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+  font-family: sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  padding-bottom: 12px;
+}
+
+#todoList {
+  max-width: 800px;
+}
+
+.todoList ul {
+  list-style-type: none;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.todoList ul li p {
+  display: inline-block;
+}
+
+.todoItem {
+  font-size: 2em;
+}
+
+.heading {
+  border-bottom: 1px solid #ddd;
+}
+
+.remove-icon {
+  opacity: 0.5;
+}
