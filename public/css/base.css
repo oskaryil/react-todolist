@@ -41,3 +41,9 @@ h1 {
 .remove-icon {
   opacity: 0.5;
 }
+
+span p {
+  word-wrap: break-word;
+  max-width: 600px;
+}
+

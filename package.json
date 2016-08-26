@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "license": "see LICENSE file",
-  "description": "Code from the React tutorial.",
+  "description": "React Simple To-do list",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.4.3",
-    "express": "^4.4.5"
+    "express": "^4.4.5",
+    "mongodb": "^2.2.5",
+    "mongoose": "^4.5.7"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,19 +18,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reactjs/react-tutorial.git"
+    "url": "https://github.com/oskaryil/react-todolist"
   },
   "keywords": [
     "react",
-    "tutorial",
-    "comment",
-    "example"
+    "todolist",
+    "todo",
+    "simple"
   ],
-  "author": "petehunt",
+  "author": "oskaryil",
   "bugs": {
-    "url": "https://github.com/reactjs/react-tutorial/issues"
+    "url": "https://github.com/oskaryil/react-todolist/issues"
   },
-  "homepage": "https://github.com/reactjs/react-tutorial",
+  "homepage": "https://github.com/oskaryil/react-todolist",
   "engines" : {
     "node" : "0.12.x"
   }

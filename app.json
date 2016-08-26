@@ -1,10 +1,8 @@
 {
-  "name": "React Tutorial Server",
-  "description": "Code from the React tutorial",
+  "name": "React To-Do List",
+  "description": "A simple todolist",
   "keywords": [ "react", "reactjs", "tutorial" ],
-  "repository": "https://github.com/reactjs/react-tutorial",
-  "logo": "https://facebook.github.io/react/img/logo.svg",
-  "website": "http://facebook.github.io/react/docs/tutorial.html",
+  "repository": "https://github.com/oskaryil/react-todolist",
   "success_url": "/",
   "env" : {
     "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-nodejs.git"

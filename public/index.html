@@ -5,7 +5,8 @@
     <title>To-Do List</title>
     <!-- Not present in the tutorial. Just for basic styling. -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="https://use.fontawesome.com/3f49784fca.js"></script>    <link rel="stylesheet" href="css/base.css" />
+    <script src="https://use.fontawesome.com/3f49784fca.js"></script>
+    <link rel="stylesheet" href="css/base.css" />
     <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
     <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
     <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
@@ -57,7 +58,7 @@
             }.bind(this)
           });
         },
-        
+
         render: function() {
           return(
             <div className="container ">
@@ -98,11 +99,12 @@
         },
 
         render: function() {
-          
+
           return(
             <li className="todoItem">
-              <span className="text-center" dangerouslySetInnerHTML={this.rawMarkup()}></span> 
-              <i className='fa fa-times pull-right remove-icon'></i>
+              <span className="text-center" dangerouslySetInnerHTML={this.rawMarkup()}></span>
+              <i className='fa fa-ellipsis-v pull-right remove-icon'></i>
+              <i className='fa fa-check pull-right remove-icon'></i>
             </li>
           );
         }
@@ -139,7 +141,6 @@
           );
         }
       });
-      $("span").append('<i className="fa fa-times pull-right"></i>');
 
       ReactDOM.render(
         <TodoListApp url="/api/comments" pollInterval={2000} />,
