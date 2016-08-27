@@ -101,11 +101,15 @@
         render: function() {
 
           return(
-            <li className="todoItem">
-              <span className="text-center" dangerouslySetInnerHTML={this.rawMarkup()}></span>
-              <i className='fa fa-ellipsis-v pull-right remove-icon'></i>
-              <i className='fa fa-check pull-right remove-icon'></i>
-            </li>
+            <div className="row">
+              <div className="col-md-12">
+                <li className="todoItem">
+                  <span className="text-center" dangerouslySetInnerHTML={this.rawMarkup()}></span>
+                  <i className='fa fa-ellipsis-v pull-right remove-icon'></i>
+                  <i className='fa fa-check pull-right remove-icon'></i>
+                </li>
+              </div>
+            </div>
           );
         }
       });
