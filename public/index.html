@@ -5,6 +5,7 @@
     <title>To-Do List</title>
     <!-- Not present in the tutorial. Just for basic styling. -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
     <script src="https://use.fontawesome.com/3f49784fca.js"></script>
     <link rel="stylesheet" href="css/base.css" />
     <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
@@ -92,11 +93,11 @@
       });
 
       var TodoItem = React.createClass({
-        rawMarkup: function() {
-          var md = new Remarkable();
-          var rawMarkup = md.render(this.props.children.toString());
-          return { __html: rawMarkup};
-        },
+        // rawMarkup: function() {
+        //   var md = new Remarkable();
+        //   var rawMarkup = md.render(this.props.children.toString());
+        //   return { __html: rawMarkup};
+        // },
 
         render: function() {
 
@@ -104,9 +105,11 @@
             <div className="row">
               <div className="col-md-12">
                 <li className="todoItem">
-                  <span className="text-center" dangerouslySetInnerHTML={this.rawMarkup()}></span>
-                  <i className='fa fa-ellipsis-v pull-right remove-icon'></i>
-                  <i className='fa fa-check pull-right remove-icon'></i>
+                  <div className="checkbox checkbox-circle checkBox pull-right">
+                    <input className="styled" type="checkbox" />
+                    <label></label>
+                  </div>
+                      <p className="todo-text">{this.props.children.toString()}</p>
                 </li>
               </div>
             </div>
@@ -127,6 +130,7 @@
           if(!text) {
             return;
           }
+          $('#taskInput').css('border-color', '#18BC9C');
           this.props.onItemSubmit({text: text});
           this.setState({text: ''});
         },
@@ -135,9 +139,9 @@
             <form className="todoForm" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <div className="input-group">
-                  <input className="form-control" type="text" placeholder="Task" value={this.state.text} onChange={this.handleTextChange} />
+                  <input id="taskInput" className="form-control" type="text" placeholder="Task" value={this.state.text} onChange={this.handleTextChange} />
                   <span className="input-group-btn">
-                    <input className="btn btn-primary" type="submit" value="Add" />
+                    <input className="btn btn-success" type="submit" value="Add" />
                   </span>
                 </div>
               </div>
