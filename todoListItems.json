@@ -2,37 +2,19 @@
     {
         "id": 1472541716014,
         "date": "Aug 30th 16",
-        "text": "Moment is awesome",
+        "text": "Finish Swedish Text",
         "checked": false
     },
     {
-        "id": 1472541763529,
+        "id": 1472572544488,
         "date": "Aug 30th 16",
-        "text": "Hello",
+        "text": "Finish this to-do list",
         "checked": false
     },
     {
-        "id": 1472543823830,
+        "id": 1472572801138,
         "date": "Aug 30th 16",
-        "text": "ALA",
-        "checked": false
-    },
-    {
-        "id": 1472543826514,
-        "date": "Aug 30th 16",
-        "text": "ALLA",
-        "checked": false
-    },
-    {
-        "id": 1472543827534,
-        "date": "Aug 30th 16",
-        "text": "ALLA",
-        "checked": false
-    },
-    {
-        "id": 1472543828365,
-        "date": "Aug 30th 16",
-        "text": "ALLA",
+        "text": "Continue with react",
         "checked": false
     }
 ]
