@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/todoapp');
+var moment = require('moment');
 var db = mongoose.connection;
 
 var app = express();
@@ -50,7 +51,9 @@ app.post('/api/comments', function(req, res) {
     // treat Date.now() as unique-enough for our purposes.
     var newItem = {
       id: Date.now(),
+      date: moment().format("MMM Do YY"),
       text: req.body.text,
+      checked: false
     };
     todoListItems.push(newItem);
     fs.writeFile(TODOLIST_FILE, JSON.stringify(todoListItems, null, 4), function(err) {

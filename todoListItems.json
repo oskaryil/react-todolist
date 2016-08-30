@@ -1,42 +1,38 @@
 [
     {
-        "id": 1472136526208,
-        "text": "Hello"
+        "id": 1472541716014,
+        "date": "Aug 30th 16",
+        "text": "Moment is awesome",
+        "checked": false
     },
     {
-        "id": 1472139066296,
-        "text": "Svenska läxa"
+        "id": 1472541763529,
+        "date": "Aug 30th 16",
+        "text": "Hello",
+        "checked": false
     },
     {
-        "id": 1472199143216,
-        "text": "Hello my name is oskar"
+        "id": 1472543823830,
+        "date": "Aug 30th 16",
+        "text": "ALA",
+        "checked": false
     },
     {
-        "id": 1472199784990,
-        "text": "Gymma"
+        "id": 1472543826514,
+        "date": "Aug 30th 16",
+        "text": "ALLA",
+        "checked": false
     },
     {
-        "id": 1472199787161,
-        "text": "Gör läxan"
+        "id": 1472543827534,
+        "date": "Aug 30th 16",
+        "text": "ALLA",
+        "checked": false
     },
     {
-        "id": 1472212312991,
-        "text": "ARDUINO"
-    },
-    {
-        "id": 1472498861420,
-        "text": "Hello"
-    },
-    {
-        "id": 1472499148832,
-        "text": "Test"
-    },
-    {
-        "id": 1472499198447,
-        "text": "Test"
-    },
-    {
-        "id": 1472499202255,
-        "text": "Hello"
+        "id": 1472543828365,
+        "date": "Aug 30th 16",
+        "text": "ALLA",
+        "checked": false
     }
 ]

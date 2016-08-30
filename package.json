@@ -8,6 +8,7 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
+    "moment": "^2.14.1",
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.7"
   },
@@ -31,7 +32,7 @@
     "url": "https://github.com/oskaryil/react-todolist/issues"
   },
   "homepage": "https://github.com/oskaryil/react-todolist",
-  "engines" : {
-    "node" : "0.12.x"
+  "engines": {
+    "node": "0.12.x"
   }
 }
