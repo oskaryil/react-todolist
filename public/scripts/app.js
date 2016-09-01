@@ -1,33 +1,42 @@
-var data = [
-{
-"id": 1472541716014,
-"date": "Aug 30th 16",
-"text": "Finish Swedish Text",
-"checked": false
+
+if(typeof(Storage) !== "undefined") {
+  // code for localstorage/sessionstorage
+  console.log("Local storage is available");
+} else {
+  //Sorry! No web Storage
+  console.log("Your browser does not support localStorage");
 }
-];
 
 var TodoListApp = React.createClass({
 getInitialState: function() {
-  return ({data: this.props.data});
+  return ({data: []});
 },
 loadItemsFromServer: function() {
-  this.setState({data: this.props.data});
+  if(localStorage.getItem('data') !== null) {
+
+    this.setState({data: JSON.parse(localStorage.getItem('data'))});
+  } else if(localStorage.getItem('data') === null) {
+
+    localStorage.setItem('data', JSON.stringify({'text': ''}));
+    this.setState({data: JSON.parse(localStorage.getItem('data'))});
+  }
+
 },
 componentDidMount: function() {
-  // setInterval(this.loadItemssFromServer, this.props.pollInterval)
+  // this.loadItemsFsromServer();
+  setInterval(this.loadItemsFromServer(), this.props.pollInterval);
+  console.log(localStorage.getItem('data'));
 },
 handleItemSubmit: function(todoItem) {
   var todoItems = this.state.data;
-  todoItem
   todoItem.id = Date.now();
   todoItem.date = moment().format("MMM Do YY");
   todoItem.checked = false;
   var newItems = todoItems.concat([todoItem]);
-  this.setState({data: newItems});
-  var data = this.props.data;
-  data.push(todoItems);
-  this.setState({data: this.props.data});
+  this.setState({data: todoItems});
+  localStorage.setItem('data', JSON.stringify(newItems));
+  this.setState({data: JSON.parse(localStorage.getItem('data'))});
+  console.log(JSON.parse(localStorage.getItem('data')));
 },
 
 render: function() {
@@ -35,7 +44,7 @@ render: function() {
     <div className="container ">
       <div id="todoList" className="center-block">
         <h1 className="text-center heading">To-Do List</h1>
-        <TodoListItems data={this.props.data} />
+        <TodoListItems data={this.state.data} />
         <TodoListForm onItemSubmit={this.handleItemSubmit} />
       </div>
     </div>
@@ -69,10 +78,6 @@ var TodoItem = React.createClass({
 //   return { __html: rawMarkup};
 // },
 
-getItems: function() {
-  console.log(JSON.parse(localStorage.getItem('data')));
-  return JSON.parse(localStorage.getItem('data'));
-},
 handleChecked: function(e) {
   console.log("hello world");
   // if($('.todo-text').innerHTML === this.props.children.toString()) {
@@ -101,7 +106,6 @@ render: function() {
               {/*<p className="todo-text">{this.props.children.toString()}</p>*/}
               <i className="fa fa-pencil edit-pencil"></i>
               <em>{this.props.date}</em>
-              <em>{this.getItems}</em>
         </li>
       </div>
     </div>
@@ -143,6 +147,6 @@ render: function() {
 });
 
 ReactDOM.render(
-<TodoListApp url="/api/comments" pollInterval={2000} data={data}/>,
+<TodoListApp url="/api/comments" pollInterval={2000} />,
 document.getElementById('content')
 );
