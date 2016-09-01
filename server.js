@@ -4,7 +4,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/todoapp');
 var moment = require('moment');
 var db = mongoose.connection;
 

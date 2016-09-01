@@ -9,7 +9,7 @@ if(typeof(Storage) !== "undefined") {
 
 var TodoListApp = React.createClass({
 getInitialState: function() {
-  return ({data: []});
+  return ({data: [] || localStorage.getItem('data')});
 },
 loadItemsFromServer: function() {
   if(localStorage.getItem('data') !== null) {
@@ -17,9 +17,11 @@ loadItemsFromServer: function() {
     this.setState({data: JSON.parse(localStorage.getItem('data'))});
   } else if(localStorage.getItem('data') === null) {
 
-    localStorage.setItem('data', JSON.stringify({'text': ''}));
+    localStorage.setItem('data', JSON.stringify([]));
     this.setState({data: JSON.parse(localStorage.getItem('data'))});
   }
+
+  // this.setState({data: localStorage.setItem('data', JSON.stringify('[{}]'))});
 
 },
 componentDidMount: function() {
