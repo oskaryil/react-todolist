@@ -79,9 +79,11 @@ var TodoItem = React.createClass({
 //   var rawMarkup = md.render(this.props.children.toString());
 //   return { __html: rawMarkup};
 // },
+  componentDidMount: function()   {
+    this.setState({uid: this.props.uid});
+  },
 
-handleChecked: function(e) {
-  console.log("hello world");
+handleChecked: function(e, uid) {
   // if($('.todo-text').innerHTML === this.props.children.toString()) {
   //   console.log('works');
   // }
@@ -89,11 +91,22 @@ handleChecked: function(e) {
   // var data = this.props.data;
   // data[this.props.key].checked = true;
 
-  if(this.props.checked) {
 
-  }
+  // $("input:checkbox").change(
+  // function(){
+  //     if ($(this).is(':checked')) {
+  //       var labelFor = $("label[for='"+uid+"'");
+  //       console.log(labelFor);
+  //       labelFor.toggleClass('line-through');
+  //     }
+  // });
+
+  // if(checked) {
+  //   console.log("hello");
+  // }
+  var parent = $("input[id='"+uid.toString()+"']").parent();
+  console.log(parent);
 },
-
 
 render: function() {
 
@@ -102,11 +115,11 @@ render: function() {
       <div className="col-md-12">
         <li className="todoItem">
           <div className="checkbox checkbox-circle checkBox">
-            <input id={this.props.uid.toString()} onChange={this.handleChecked} className="styled" type="checkbox" />
+            <input id={this.props.uid.toString()} onChange={this.handleChecked(null, this.props.uid)} className="styled" type="checkbox" />
             <label htmlFor={this.props.uid.toString()}>{this.props.children.toString()}</label>
           </div>
               {/*<p className="todo-text">{this.props.children.toString()}</p>*/}
-              <i className="fa fa-pencil edit-pencil"></i>
+              <i className="fa fa-pdencil edit-pencil"></i>
               <em>{this.props.date}</em>
         </li>
       </div>
