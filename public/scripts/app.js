@@ -83,7 +83,7 @@ var TodoItem = React.createClass({
     this.setState({uid: this.props.uid});
   },
 
-handleChecked: function(e, uid) {
+handleCheckedd: function(e, uid) {
   // if($('.todo-text').innerHTML === this.props.children.toString()) {
   //   console.log('works');
   // }
@@ -104,18 +104,20 @@ handleChecked: function(e, uid) {
   // if(checked) {
   //   console.log("hello");
   // }
-  var parent = $("input[id='"+uid.toString()+"']").parent();
-  console.log(parent);
 },
 
 render: function() {
+
+  var handleChecked = function(e, props) {
+
+  }
 
   return(
     <div className="row">
       <div className="col-md-12">
         <li className="todoItem">
           <div className="checkbox checkbox-circle checkBox">
-            <input id={this.props.uid.toString()} onChange={this.handleChecked(null, this.props.uid)} className="styled" type="checkbox" />
+            <input id={this.props.uid.toString()} onChange={handleChecked(null, this.props)} className="styled" type="checkbox" />
             <label htmlFor={this.props.uid.toString()}>{this.props.children.toString()}</label>
           </div>
               {/*<p className="todo-text">{this.props.children.toString()}</p>*/}
