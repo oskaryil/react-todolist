@@ -43,13 +43,11 @@ handleItemSubmit: function(todoItem) {
 
 render: function() {
   return(
-    <div className="container ">
       <div id="todoList" className="center-block">
         <h1 className="text-center heading">To-Do List</h1>
         <TodoListItems data={this.state.data} />
         <TodoListForm onItemSubmit={this.handleItemSubmit} />
       </div>
-    </div>
   );
 }
 });
